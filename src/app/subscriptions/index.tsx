@@ -13,7 +13,6 @@ import { daysBetween, formatDate } from '@/lib/dates';
 import { formatMoney } from '@/lib/money';
 import { CATEGORIES, cycleLabel, labelFor, PAYMENT_METHODS, STATUSES, type Option } from '@/lib/options';
 import type { Enums } from '@/types/database';
-import { routes } from '@/lib/routes';
 
 type Filter = 'all' | 'category' | 'payment' | 'trial';
 
@@ -65,7 +64,7 @@ export default function SubscriptionsList() {
         <ScreenHeader
           title="Subscriptions"
           right={
-            <Link href={routes.add} asChild>
+            <Link href="/subscriptions/new" asChild>
               <Pressable className="rounded-full bg-emerald-600 px-4 py-2 active:opacity-80">
                 <Text className="font-semibold text-white">+ Add</Text>
               </Pressable>
@@ -109,7 +108,7 @@ function Row({ sub, next, today }: { sub: SubscriptionWithService; next: string;
 
   return (
     <Pressable
-      onPress={() => router.push(routes.detail(sub.id))}
+      onPress={() => router.push({ pathname: '/subscriptions/[id]', params: { id: sub.id } })}
       className={`flex-row items-center gap-3 py-3 active:opacity-60 ${inactive ? 'opacity-50' : ''}`}
     >
       <ServiceLogo name={sub.name} logoUrl={sub.service?.logo_url} />

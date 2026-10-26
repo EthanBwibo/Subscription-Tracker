@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProfile } from '@/hooks/useProfile';
 import { signOut } from '@/lib/auth';
 import { useAuth } from '@/providers/AuthProvider';
-import { routes } from '@/lib/routes';
 
 // Placeholder home until M3 builds the summary.
 export default function Home() {
@@ -24,7 +23,7 @@ export default function Home() {
         )}
         {error && <Text className="text-sm text-red-600">Couldn&apos;t load profile: {error.message}</Text>}
 
-        <Link href={routes.list} asChild>
+        <Link href="/subscriptions" asChild>
           <Pressable className="mt-6 items-center rounded-xl bg-emerald-600 py-3 active:opacity-80">
             <Text className="text-base font-semibold text-white">Your subscriptions</Text>
           </Pressable>

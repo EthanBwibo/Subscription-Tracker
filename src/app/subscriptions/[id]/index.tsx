@@ -12,7 +12,6 @@ import { monthlyCost, nextChargeDate, pastCharges, yearlyCost } from '@/lib/bill
 import { formatDate } from '@/lib/dates';
 import { formatMoney } from '@/lib/money';
 import { CATEGORIES, cycleLabel, labelFor, PAYMENT_METHODS, REMINDERS, STATUSES } from '@/lib/options';
-import { routes } from '@/lib/routes';
 
 export default function SubscriptionDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -52,7 +51,7 @@ export default function SubscriptionDetail() {
       setConfirming(true);
       return;
     }
-    remove.mutate(sub!.id, { onSuccess: () => router.replace(routes.list) });
+    remove.mutate(sub!.id, { onSuccess: () => router.replace('/subscriptions') });
   }
 
   return (
@@ -62,7 +61,7 @@ export default function SubscriptionDetail() {
           <ScreenHeader
             title=""
             right={
-              <Link href={routes.edit(sub.id)} asChild>
+              <Link href={{ pathname: '/subscriptions/[id]/edit', params: { id: sub.id } }} asChild>
                 <Pressable hitSlop={12} className="active:opacity-60">
                   <Text className="text-base font-semibold text-emerald-600 dark:text-emerald-400">Edit</Text>
                 </Pressable>

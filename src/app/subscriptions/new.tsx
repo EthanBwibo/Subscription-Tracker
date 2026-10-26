@@ -11,7 +11,6 @@ import { useServices, type Service } from '@/hooks/useServices';
 import { useSaveSubscription } from '@/hooks/useSubscriptions';
 import { useToday } from '@/hooks/useToday';
 import { CATEGORIES, labelFor } from '@/lib/options';
-import { routes } from '@/lib/routes';
 
 // Step 1 picks a preset (or custom), step 2 is the entry form.
 export default function NewSubscription() {
@@ -50,7 +49,7 @@ export default function NewSubscription() {
             submitError={save.error?.message}
             onSubmit={(input) =>
               save.mutate(input, {
-                onSuccess: (id) => router.replace(routes.detail(id)),
+                onSuccess: (id) => router.replace({ pathname: '/subscriptions/[id]', params: { id } }),
               })
             }
           />

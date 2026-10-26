@@ -6,7 +6,6 @@ import { ScreenHeader } from '@/components/ScreenHeader';
 import { SubscriptionForm } from '@/components/SubscriptionForm';
 import { useSaveSubscription, useSubscription } from '@/hooks/useSubscriptions';
 import { useToday } from '@/hooks/useToday';
-import { routes } from '@/lib/routes';
 
 export default function EditSubscription() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -16,7 +15,7 @@ export default function EditSubscription() {
 
   function done() {
     if (router.canGoBack()) router.back();
-    else router.replace(routes.detail(id));
+    else router.replace({ pathname: '/subscriptions/[id]', params: { id } });
   }
 
   return (
