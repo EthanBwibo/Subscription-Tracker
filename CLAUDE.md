@@ -36,6 +36,7 @@ Personal tracker for recurring charges in KES (Kenya: M-Pesa, card, carrier bill
 ## Layout & commands
 - Routes in `src/app/` (Expo Router); non-route code in `src/lib`, `src/hooks`, `src/providers`, `src/types`. Import via `@/`.
 - Expo SDK 58: check versioned docs before using Expo APIs (see `AGENTS.md`). Add packages with `npx expo install`.
+- patches/ holds a fix for an Expo Windows typed-routes bug; delete it once upstream fixes it (check on each Expo upgrade).
 - `npm start` (Expo Go) · `npm run web` · `npm run typecheck` · `npm run lint` · `npx expo-doctor`
 - Auth redirect URLs to allow in Supabase: `subtracker://**`, `exp://**`, `http://localhost:8081/**` (+ the Vercel URL in M5).
 

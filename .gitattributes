@@ -1,0 +1,2 @@
+# patch-package patches must keep LF to apply to LF sources.
+patches/*.patch text eol=lf
