@@ -4,7 +4,7 @@ Personal tracker for recurring charges in KES (Kenya: M-Pesa, card, carrier bill
 **Source of truth: `docs/spec.md`.** Read the relevant milestone section before starting work.
 
 ## Links
-- Supabase: https://wdcedxshfbhuouoiamac.supabase.co (project ref `wdcedxshfbhuouoiamac`)
+- Supabase: https://jhouvihmhaeirxwttrhu.supabase.co (project ref `jhouvihmhaeirxwttrhu`)
 - GitHub: https://github.com/EthanBwibo/Subscription-Tracker
 
 ## Stack
