@@ -1,0 +1,14 @@
+diff --git a/node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/build/typed-routes/index.js b/node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/build/typed-routes/index.js
+index bd80013..22617ab 100644
+--- a/node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/build/typed-routes/index.js
++++ b/node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/build/typed-routes/index.js
+@@ -74,7 +74,8 @@ function getWatchHandler(outputDir, { ctx = defaultCtx, regenerateFn = regenerat
+         // Sanity check that we are in an Expo Router project
+         if (!process.env.EXPO_ROUTER_APP_ROOT) return;
+         let shouldRegenerate = false;
+-        let relativePath = _nodepath().default.relative(process.env.EXPO_ROUTER_APP_ROOT, filePath);
++        // Normalise Windows separators so the outside-app-root check and require.context keys work.
++        let relativePath = _nodepath().default.relative(process.env.EXPO_ROUTER_APP_ROOT, filePath).split(_nodepath().default.sep).join('/');
+         const isInsideAppRoot = !relativePath.startsWith('../');
+         const basename = _nodepath().default.basename(relativePath);
+         if (!isInsideAppRoot) return;
