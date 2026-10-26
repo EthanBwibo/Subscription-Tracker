@@ -3,11 +3,21 @@ import '../../global.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, View } from 'react-native';
+import { colorScheme } from 'nativewind';
+import { useEffect } from 'react';
+import { ActivityIndicator, Platform, useColorScheme, View } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/providers/AuthProvider';
 
 const queryClient = new QueryClient();
+
+// darkMode is 'class', so on web toggle the `dark` class to follow the OS. Native follows the OS already.
+function useWebSystemColorScheme() {
+  const system = useColorScheme();
+  useEffect(() => {
+    if (Platform.OS === 'web') colorScheme.set(system === 'dark' ? 'dark' : 'light');
+  }, [system]);
+}
 
 function RootNavigator() {
   const { session, isLoading } = useAuth();
@@ -33,6 +43,8 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  useWebSystemColorScheme();
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
