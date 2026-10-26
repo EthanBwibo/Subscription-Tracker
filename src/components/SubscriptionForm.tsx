@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Pressable, Switch, Text, View } from 'react-native';
 
 import { ChipGroup } from '@/components/ChipGroup';
+import { DateField } from '@/components/DateField';
 import { Field, Input } from '@/components/Field';
 import type { Service } from '@/hooks/useServices';
 import type { SubscriptionInput } from '@/hooks/useSubscriptions';
@@ -36,7 +37,7 @@ type Props = {
 
 type Errors = Partial<Record<'name' | 'amount' | 'customDays' | 'nextBillingDate' | 'startDate' | 'trialEndsAt', string>>;
 
-const DATE_HINT = 'Use YYYY-MM-DD, e.g. 2026-11-05.';
+const DATE_HINT = 'Pick a date.';
 
 export function SubscriptionForm({ today, initial, service, defaultName, submitLabel, submitting, submitError, onSubmit }: Props) {
   const [name, setName] = useState(initial?.name ?? service?.name ?? defaultName ?? '');
@@ -137,16 +138,16 @@ export function SubscriptionForm({ today, initial, service, defaultName, submitL
 
       {isTrial ? (
         <Field label="Trial ends on" error={errors.trialEndsAt}>
-          <Input value={trialEndsAt} onChangeText={setTrialEndsAt} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+          <DateField value={trialEndsAt} onChange={setTrialEndsAt} defaultDate={today} />
         </Field>
       ) : (
         <Field label="Next billing date" error={errors.nextBillingDate}>
-          <Input value={nextBillingDate} onChangeText={setNextBillingDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+          <DateField value={nextBillingDate} onChange={setNextBillingDate} defaultDate={today} />
         </Field>
       )}
 
       <Field label="Started on" error={errors.startDate}>
-        <Input value={startDate} onChangeText={setStartDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+        <DateField value={startDate} onChange={setStartDate} defaultDate={today} />
       </Field>
 
       <Field label="Payment method">

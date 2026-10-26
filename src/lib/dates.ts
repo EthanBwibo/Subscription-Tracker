@@ -52,3 +52,14 @@ export function daysBetween(from: string, to: string): number {
 export function formatDate(value: string): string {
   return fromIsoDate(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
+
+// Native pickers work in local Dates; these keep the calendar day intact both ways.
+export function isoToLocalDate(value: string): Date {
+  const [y, m, d] = value.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+export function localDateToIso(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
