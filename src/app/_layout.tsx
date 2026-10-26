@@ -34,6 +34,10 @@ function RootNavigator() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={!!session}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="subscriptions/index" />
+        <Stack.Screen name="subscriptions/new" />
+        <Stack.Screen name="subscriptions/[id]/index" />
+        <Stack.Screen name="subscriptions/[id]/edit" />
       </Stack.Protected>
       <Stack.Protected guard={!session}>
         <Stack.Screen name="sign-in" />

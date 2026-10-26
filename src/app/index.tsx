@@ -1,9 +1,11 @@
+import { Link } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useProfile } from '@/hooks/useProfile';
 import { signOut } from '@/lib/auth';
 import { useAuth } from '@/providers/AuthProvider';
+import { routes } from '@/lib/routes';
 
 // Placeholder home until M3 builds the summary.
 export default function Home() {
@@ -22,7 +24,13 @@ export default function Home() {
         )}
         {error && <Text className="text-sm text-red-600">Couldn&apos;t load profile: {error.message}</Text>}
 
-        <Pressable className="mt-6 items-center rounded-xl border border-neutral-300 py-3 active:opacity-80 dark:border-neutral-700" onPress={() => signOut()}>
+        <Link href={routes.list} asChild>
+          <Pressable className="mt-6 items-center rounded-xl bg-emerald-600 py-3 active:opacity-80">
+            <Text className="text-base font-semibold text-white">Your subscriptions</Text>
+          </Pressable>
+        </Link>
+
+        <Pressable className="items-center rounded-xl border border-neutral-300 py-3 active:opacity-80 dark:border-neutral-700" onPress={() => signOut()}>
           <Text className="text-base font-semibold text-neutral-900 dark:text-white">Sign out</Text>
         </Pressable>
       </View>
